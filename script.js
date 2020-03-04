@@ -41,8 +41,10 @@ const show = {
 
 const fire = (event) => {
     const target = event.target;
-    show.miss(target);
-    dataGame.updateData = 'shot';
+    if(!target.classList.contains('miss')){
+        show.miss(target);
+        dataGame.updateData = 'shot';
+    }
 };
 
 const init = () => {
