@@ -14,6 +14,33 @@ const dataGame = {
     dead: 0
 };
 
-const init = () => {
-    
+const show = {
+    hit() {
+
+    },
+    miss(elem) {
+        this.changeClass(elem, 'miss');
+    },
+    dead() {
+
+    },
+    changeClass(elem, value){
+        elem.className = value;
+    }
 };
+
+const fire = (event) => {
+    const target = event.target;
+    show.miss(target);
+
+};
+
+const init = () => {
+    enemy.addEventListener('click', fire);
+};
+
+const start = () => {
+
+};
+
+init();
