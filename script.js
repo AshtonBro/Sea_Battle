@@ -43,8 +43,6 @@ const fire = (event) => {
     const target = event.target;
     show.miss(target);
     dataGame.updateData = 'shot';
-    console.log('target: ', target);
-    target.style.disabled = 'true';
 };
 
 const init = () => {
