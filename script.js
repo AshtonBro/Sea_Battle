@@ -26,6 +26,7 @@ const game = {
             hit: ['']
         },
     ],
+    shipCount: 4
 };
 
 const dataGame = {
@@ -46,14 +47,14 @@ const dataGame = {
 };
 
 const show = {
-    hit() {
-
+    hit(elem) {
+        this.changeClass(elem, 'hit');
     },
     miss(elem) {
         this.changeClass(elem, 'miss');
     },
-    dead() {
-
+    dead(elem) {
+        this.changeClass(elem, 'dead');
     },
     changeClass(elem, value){
         elem.className = value;
@@ -66,6 +67,22 @@ const fire = (event) => {
     show.miss(target);
     dataGame.updateData = 'shot';
     
+    for (let i = 0; i < game.ships.length; i++){
+        const ship = game.ships[i];
+        const idShip = ship.location.indexOf(target.id);
+        if (idShip >= 0) {
+            show.hit(target);
+            dataGame.updateData = 'hit';
+            ship.hit[idShip] = 'x';
+            const checkAllHits = ship.hit.indexOf('');
+            if (checkAllHits < 0) {
+                dataGame.updateData = 'dead';
+                for (const id of ship.location) {
+                    show.dead(document.getElementById(id));
+                }
+            }
+        }
+    }
 };
 
 const init = () => {
