@@ -7,6 +7,27 @@ const record = document.getElementById('record'),
     enemy = document.getElementById('enemy'),
     again = document.getElementById('again');
 
+const game = {
+    ships: [
+        {
+            location: ['26', '36', '46', '56'],
+            hit: ['', '', '', '']
+        },
+        {
+            location: ['11', '12', '13'],
+            hit: ['', '', '']
+        },
+        {
+            location: ['69', '79'],
+            hit: ['', '']
+        },
+        {
+            location: ['32'],
+            hit: ['']
+        },
+    ],
+};
+
 const dataGame = {
     record: 0,
     shot: 0,
@@ -41,10 +62,10 @@ const show = {
 
 const fire = (event) => {
     const target = event.target;
-    if(!target.classList.contains('miss')){
-        show.miss(target);
-        dataGame.updateData = 'shot';
-    }
+    if (target.classList.contains('miss') || target.tagName !== 'TD') {return;}
+    show.miss(target);
+    dataGame.updateData = 'shot';
+    
 };
 
 const init = () => {
