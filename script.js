@@ -93,7 +93,6 @@ const fire = (event) => {
                         dataGame.record = dataGame.shot;
                         dataGame.render();
                     }
-
                 }
             }
         }
