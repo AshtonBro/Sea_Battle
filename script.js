@@ -31,7 +31,7 @@ const game = {
 };
 
 const dataGame = {
-    record: localStorage.getItem('seaBattleRecord'),
+    record: localStorage.getItem('seaBattleRecord') || 0,
     shot: 0,
     hit: 0,
     dead: 0,
@@ -103,6 +103,10 @@ const fire = (event) => {
 const init = () => {
     enemy.addEventListener('click', fire);
     dataGame.render();
+
+    again.addEventListener('click', () => {
+        location.reload();
+    });
 };
 
 const start = () => {
