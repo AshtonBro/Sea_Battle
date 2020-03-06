@@ -1,12 +1,15 @@
 'use strict';
 
+const arrX = ['А', 'Б', 'В', 'Г', 'Д', 'Е', 'Ж', 'З', 'И', 'К'];
+
 const record = document.getElementById('record'),
     shot = document.getElementById('shot'),
     hit = document.getElementById('hit'),
     dead = document.getElementById('dead'),
     enemy = document.getElementById('enemy'),
     again = document.getElementById('again'),
-    header = document.querySelector('.header');
+    header = document.querySelector('.header'),
+    fireResult = document.querySelector('.fireResult');
 
 const game = {
     ships: [],
@@ -56,7 +59,7 @@ const game = {
             return this.generationSettiongsShip(shipSize);
         }
 
-        this.addCollision(newShip.localtion);
+        this.addCollision(newShip.location);
 
         return newShip;
     },
@@ -70,8 +73,8 @@ const game = {
     addCollision(location) {
         for (let i = 0; i < location.length; i++) {
             const startCoordCurX = location[i][0] - 1;
-            const startCoordCurY = location[i][1] - 1;
             for (let j = startCoordCurX; j < startCoordCurX + 3; j++) {
+                const startCoordCurY = location[i][1] - 1;
                 for (let q = startCoordCurY; q < startCoordCurY + 3; q++) {
                     if(j >= 0 && j < 10 && q >= 0 && q < 10) {
                         const coord = j + '' + q;
@@ -127,6 +130,7 @@ const fire = (event) => {
         if (idShip >= 0) {
             show.hit(target);
             dataGame.updateData = 'hit';
+            console.log(`${arrX[target.id[0]] + (+target.id[1] + 1)} Попал`);
             ship.hit[idShip] = 'x';
             const checkAllHits = ship.hit.indexOf('');
             if (checkAllHits < 0) {
@@ -150,6 +154,11 @@ const fire = (event) => {
             }
         }
     }
+
+    if (target.classList.contains('miss')) {
+        console.log(`${arrX[target.id[0]] + (+target.id[1] + 1)} Мимо`);
+    }
+
 };
 
 const init = () => {
