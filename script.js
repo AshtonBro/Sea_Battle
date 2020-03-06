@@ -15,6 +15,7 @@ const game = {
         count: [1, 2, 3, 4],
         size: [4, 3, 2, 1]
     },
+    collision:[],
     generateShip(){
         for (let i = 0; i < this.settingShip.count.length; i++){
             for (let j = 0; j < this.settingShip.count[i]; j++){
@@ -51,14 +52,37 @@ const game = {
             newShip.hit.push('');
         }
 
-        if (this.checkCollison(ship.location)) {
-            return;
+        if (this.checkCollison(newShip.location)) {
+            return this.generationSettiongsShip(shipSize);
         }
+
+        this.addCollision(newShip.localtion);
 
         return newShip;
     },
-    checkCollison(location){
-        if (this.)
+    checkCollison(location) {
+        for (const coordCur of location) {
+            if(this.collision.includes(coordCur)) {
+                return true;
+            }
+        }
+    },
+    addCollision(location) {
+        for (let i = 0; i < location.length; i++) {
+            const startCoordCurX = location[i][0] - 1;
+            for (let j = startCoordCurX; j < startCoordCurX + 3; j++) {
+                const startCoordCurY = location[i][1] - 1;
+                for (let q = startCoordCurY; q < startCoordCurY +3; q++) {
+
+                    if(j >= 0 && j < 10 && q >= 0 && q < 10) {
+                        const coord = j + '' + q;
+                        if (!this.collision.includes(coord)) {
+                            this.collision.push(coord);
+                        }
+                    }
+                }
+            }
+        }
     }
 };
 
@@ -144,6 +168,8 @@ const init = () => {
         dataGame.record = 0;
         dataGame.render();
     });
+
+    console.log(game);
 };
 
 const start = () => {
