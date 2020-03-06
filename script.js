@@ -9,25 +9,15 @@ const record = document.getElementById('record'),
     header = document.querySelector('.header');
 
 const game = {
-    ships: [
-        {
-            location: ['26', '36', '46', '56'],
-            hit: ['', '', '', '']
-        },
-        {
-            location: ['11', '12', '13'],
-            hit: ['', '', '']
-        },
-        {
-            location: ['69', '79'],
-            hit: ['', '']
-        },
-        {
-            location: ['32'],
-            hit: ['']
-        },
-    ],
-    shipCount: 4
+    ships: [],
+    shipCount: 0,
+    settingShip: {
+        count: [1, 2, 3, 4],
+        size: [4, 3, 2, 1]
+    },
+    generateShip(){
+
+    }
 };
 
 const dataGame = {
@@ -102,12 +92,13 @@ const fire = (event) => {
 const init = () => {
     enemy.addEventListener('click', fire);
     dataGame.render();
-
+    dataGame.generateShip();
     again.addEventListener('click', () => {
         location.reload();
     });
 
     record.addEventListener('dblclick', () => {
+        localStorage.clear();
         dataGame.record = 0;
         dataGame.render();
     });
