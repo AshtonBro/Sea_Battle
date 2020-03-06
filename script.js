@@ -16,7 +16,14 @@ const game = {
         size: [4, 3, 2, 1]
     },
     generateShip(){
-
+        for (let i = 0; i < this.settingShip.count.length; i++){
+            for (let j = 0; j < this.settingShip.count[i]; j++){
+                const size = this.settingShip.size[i];
+                const ship = {};
+                this.ships.push(ship);
+                this.shipCount++;
+            }
+        }
     }
 };
 
@@ -92,7 +99,7 @@ const fire = (event) => {
 const init = () => {
     enemy.addEventListener('click', fire);
     dataGame.render();
-    dataGame.generateShip();
+    game.generateShip();
     again.addEventListener('click', () => {
         location.reload();
     });
@@ -102,6 +109,8 @@ const init = () => {
         dataGame.record = 0;
         dataGame.render();
     });
+
+    console.log(game.ships);
 };
 
 const start = () => {
