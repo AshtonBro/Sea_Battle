@@ -30,8 +30,26 @@ const game = {
             hit: [],
             location: []
         };
-
+        // [0 до 0,99999]
+        // [0 - 0,49999] / [0,5 - 0,99999]
         const direction = Math.random() < 0.5;
+        let x, y;
+        if(direction){
+            x = Math.floor(Math.random() * 10);
+            y = Math.floor(Math.random() * (10 - shipSize));
+        } else {
+            x = Math.floor(Math.random() * (10 - shipSize));
+            y = Math.floor(Math.random() * 10);
+        }
+
+        for (let i = 0; i < shipSize; i++){
+            if(direction){
+                newShip.location.push(x + (y + i));
+            } else {
+                newShip.location.push((x + i) + y);
+            }
+        }
+
 
         return newShip;
     }
@@ -119,8 +137,6 @@ const init = () => {
         dataGame.record = 0;
         dataGame.render();
     });
-
-    console.log(game.ships);
 };
 
 const start = () => {
