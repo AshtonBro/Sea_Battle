@@ -51,10 +51,14 @@ const game = {
             newShip.hit.push('');
         }
 
+        if (this.checkCollison(ship.location)) {
+            return;
+        }
+
         return newShip;
     },
     checkCollison(location){
-        
+        if (this.)
     }
 };
 
