@@ -12,18 +12,28 @@ const game = {
     ships: [],
     shipCount: 0,
     settingShip: {
-        count: [1, 2, 3, 4],
+        count: [1, 0, 0, 0],
         size: [4, 3, 2, 1]
     },
     generateShip(){
         for (let i = 0; i < this.settingShip.count.length; i++){
             for (let j = 0; j < this.settingShip.count[i]; j++){
                 const size = this.settingShip.size[i];
-                const ship = {};
+                const ship = this.generationSettiongsShip(size);
                 this.ships.push(ship);
                 this.shipCount++;
             }
         }
+    },
+    generationSettiongsShip(shipSize){
+        const newShip = {
+            hit: [],
+            location: []
+        };
+
+        const direction = Math.random() < 0.5;
+
+        return newShip;
     }
 };
 
