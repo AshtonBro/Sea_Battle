@@ -64,7 +64,7 @@ const show = {
 
 const fire = (event) => {
     const target = event.target;
-    if (target.classList.contains('miss') || target.tagName !== 'TD') {return;}
+    if (target.classList.contains('miss') || target.tagName !== 'TD' || !game.shipCount) {return;}
     show.miss(target);
     dataGame.updateData = 'shot';
     
@@ -84,7 +84,7 @@ const fire = (event) => {
 
                 game.shipCount -= 1;
 
-                if (game.shipCount < 1) {
+                if (!game.shipCount) {
                     header.textContent = 'Игра окончена';
                     header.style.color = 'red';
 
@@ -105,6 +105,11 @@ const init = () => {
 
     again.addEventListener('click', () => {
         location.reload();
+    });
+
+    record.addEventListener('dblclick', () => {
+        dataGame.record = 0;
+        dataGame.render();
     });
 };
 
