@@ -130,7 +130,8 @@ const fire = (event) => {
         if (idShip >= 0) {
             show.hit(target);
             dataGame.updateData = 'hit';
-            console.log(`${arrX[target.id[0]] + (+target.id[1] + 1)} Попал`);
+            fireResult.textContent = (`${arrX[target.id[0]] + (+target.id[1] + 1)} Попал`);
+            fireResult.style.color = 'Green';
             ship.hit[idShip] = 'x';
             const checkAllHits = ship.hit.indexOf('');
             if (checkAllHits < 0) {
@@ -156,7 +157,8 @@ const fire = (event) => {
     }
 
     if (target.classList.contains('miss')) {
-        console.log(`${arrX[target.id[0]] + (+target.id[1] + 1)} Мимо`);
+        fireResult.textContent = (`${arrX[target.id[0]] + (+target.id[1] + 1)} Промазал`);
+            fireResult.style.color = 'Red';
     }
 
 };
@@ -178,8 +180,5 @@ const init = () => {
     console.log(game);
 };
 
-const start = () => {
-
-};
 
 init();
