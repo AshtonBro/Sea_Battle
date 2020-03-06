@@ -12,7 +12,7 @@ const game = {
     ships: [],
     shipCount: 0,
     settingShip: {
-        count: [1, 0, 0, 0],
+        count: [1, 2, 3, 4],
         size: [4, 3, 2, 1]
     },
     generateShip(){
@@ -44,14 +44,17 @@ const game = {
 
         for (let i = 0; i < shipSize; i++){
             if(direction){
-                newShip.location.push(x + (y + i));
+                newShip.location.push(x + '' + (y + i));
             } else {
-                newShip.location.push((x + i) + y);
+                newShip.location.push((x + i) + '' + y);
             }
+            newShip.hit.push('');
         }
 
-
         return newShip;
+    },
+    checkCollison(location){
+        
     }
 };
 
